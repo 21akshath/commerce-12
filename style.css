@@ -96,25 +96,34 @@ button:hover { background:#0056b3; transform:scale(1.05); }
 .cart-item button { background:red; }
 .cart-item button:hover { background:#cc0000; }
 
-/* Reviews Section */
+.main-container {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Reviews sidebar */
 #reviews-section {
+  flex: 0 0 300px; /* fixed width */
   background:#fff;
   padding:15px;
-  margin:20px;
   border-radius:12px;
   box-shadow:0 4px 10px rgba(0,0,0,0.1);
-  max-width:400px;
+  max-height: calc(100vh - 150px); /* prevent overflow */
+  overflow-y: auto;
 }
-#reviews-section h2 { color:#007BFF; margin-bottom:10px; }
-.review-card { border-bottom:1px solid #ddd; padding:8px; font-size:14px; }
-.review-card:last-child { border-bottom:none; }
-.review-card p { margin:4px 0; }
 
-/* Headings */
-#featured-section h2,
-#all-products-section h2 {
-  color:#007BFF;
-  font-size:20px;
-  margin-bottom:10px;
-  text-align:left;
+/* Products section takes remaining space */
+.products-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* Product grid inside products section */
+.products-section .product-list {
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:25px;
 }
