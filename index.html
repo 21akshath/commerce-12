@@ -3,17 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ShopEase - Online Store</title>
+  <title>ShopEase - Modern Store</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
   <header>
-    <h1>ShopEase</h1>
+    <div class="logo">ShopEase</div>
     <nav>
       <ul>
-        <li>Home</li>
+        <li><i class="fa fa-home"></i> Home</li>
         <li>
-          Categories
+          <i class="fa fa-list"></i> Categories
           <select id="category-select" onchange="filterCategory()">
             <option value="All">All</option>
             <option value="Fashion">Fashion</option>
@@ -21,13 +22,21 @@
             <option value="Accessories">Accessories</option>
           </select>
         </li>
-        <li id="cart" onclick="openCart()">Cart (0)</li>
+        <li id="cart" onclick="openCart()"><i class="fa fa-shopping-cart"></i> Cart (0)</li>
       </ul>
     </nav>
   </header>
 
   <main>
-    <section class="product-list" id="product-list"></section>
+    <section id="featured-section">
+      <h2>Featured Products</h2>
+      <div class="product-list" id="featured-list"></div>
+    </section>
+
+    <section id="all-products-section">
+      <h2>All Products</h2>
+      <div class="product-list" id="product-list"></div>
+    </section>
 
     <section id="reviews-section">
       <h2>User Reviews</h2>
@@ -43,7 +52,7 @@
       <h2 id="modal-name"></h2>
       <p id="modal-price"></p>
       <p id="modal-desc"></p>
-      <button id="modal-add-btn">Add to Cart</button>
+      <button id="modal-add-btn" onclick="addToCart(currentModalIndex)">Add to Cart</button>
     </div>
   </div>
 
