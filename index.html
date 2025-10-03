@@ -1,10 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ShopEase</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
 <header>
   <div class="logo">ShopEase</div>
   <nav>
     <ul>
-      <li onclick="displayAllProducts()"><i class="fa fa-home"></i> Home</li>
+      <li onclick="displayAllProducts()">Home</li>
       <li>
-        <i class="fa fa-list"></i> Categories
+        Categories
         <span class="category-list">
           <button onclick="filterCategory('All')">All</button>
           <button onclick="filterCategory('Fashion')">Fashion</button>
@@ -12,7 +21,7 @@
           <button onclick="filterCategory('Accessories')">Accessories</button>
         </span>
       </li>
-      <li id="cart" onclick="openCart()"><i class="fa fa-shopping-cart"></i> Cart (0)</li>
+      <li id="cart" onclick="openCart()">Cart (0)</li>
     </ul>
   </nav>
 </header>
@@ -36,3 +45,28 @@
     <div id="reviews-list" class="reviews-left"></div>
   </section>
 </main>
+
+<!-- Modals -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img id="modal-img">
+    <h3 id="modal-name"></h3>
+    <p id="modal-price"></p>
+    <p id="modal-desc"></p>
+  </div>
+</div>
+
+<div id="cart-modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeCart()">&times;</span>
+    <h3>Cart</h3>
+    <div id="cart-items"></div>
+    <p id="cart-total">Total: ₹0</p>
+    <button onclick="checkout()">Checkout</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
