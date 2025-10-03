@@ -84,7 +84,6 @@ function submitReview(){
   reviewText.value = "";
   displayReviews();
 }
-
 // Display reviews at bottom
 function displayReviews(){
   reviewsList.innerHTML="";
@@ -146,3 +145,4 @@ initReviewDropdown();
 displayFeatured();
 displayProducts(products);
 displayReviews();
+
