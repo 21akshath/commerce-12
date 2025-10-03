@@ -12,43 +12,23 @@
     <nav>
       <ul>
         <li>Home</li>
-        <li>Categories</li>
+        <li>
+          Categories
+          <select id="category-select" onchange="filterCategory()">
+            <option value="All">All</option>
+            <option value="Fashion">Fashion</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Accessories">Accessories</option>
+          </select>
+        </li>
         <li id="cart" onclick="openCart()">Cart (0)</li>
       </ul>
     </nav>
   </header>
 
   <main>
-    <section class="product-list" id="product-list-top"></section>
-    <hr>
-    <section class="product-list" id="product-list-bottom"></section>
+    <section class="product-list" id="product-list"></section>
   </main>
-
-  <!-- Product Details Modal -->
-  <div id="modal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal()">&times;</span>
-      <img id="modal-img" src="" alt="Product Image">
-      <h2 id="modal-name"></h2>
-      <p id="modal-price"></p>
-      <p id="modal-desc"></p>
-      <div>
-        <label>Rating: </label>
-        <select id="review-rating">
-          <option value="5">★★★★★</option>
-          <option value="4">★★★★☆</option>
-          <option value="3">★★★☆☆</option>
-          <option value="2">★★☆☆☆</option>
-          <option value="1">★☆☆☆☆</option>
-        </select>
-      </div>
-      <div>
-        <label>Write Review:</label><br>
-        <textarea id="review-text" rows="3" placeholder="Write your review here..."></textarea>
-      </div>
-      <button id="submit-review-btn">Submit Review & Add to Cart</button>
-    </div>
-  </div>
 
   <!-- Cart Modal -->
   <div id="cart-modal" class="modal">
