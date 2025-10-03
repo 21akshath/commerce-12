@@ -4,7 +4,7 @@ body { background:#f8f9fa; color:#333; transition:0.3s; }
 
 /* Header */
 header {
-  background:#ff6f61;
+  background:#007BFF;
   color:white;
   padding:15px 30px;
   display:flex;
@@ -12,27 +12,25 @@ header {
   align-items:center;
   box-shadow:0 4px 15px rgba(0,0,0,0.2);
   border-radius:0 0 20px 20px;
-  transition:0.3s;
 }
-header .logo { font-size:28px; font-weight:bold; transition:0.3s; }
-header .logo:hover { transform:scale(1.1); }
+header .logo { font-size:28px; font-weight:bold; }
 nav ul { list-style:none; display:flex; gap:20px; align-items:center; }
-nav ul li { cursor:pointer; font-weight:bold; position:relative; transition:0.3s; }
-nav ul li:hover { color:#fff200; transform:scale(1.1); }
+nav ul li { cursor:pointer; font-weight:bold; position:relative; }
+nav ul li:hover { color:#fff200; }
 
 /* Category Buttons */
 .category-list button {
   margin-left:8px;
   padding:5px 10px;
   background:#fff;
-  border:1px solid #ff6f61;
-  color:#ff6f61;
+  border:1px solid #007BFF;
+  color:#007BFF;
   border-radius:5px;
   cursor:pointer;
   transition:0.3s;
 }
 .category-list button:hover {
-  background:#ff6f61;
+  background:#007BFF;
   color:white;
 }
 
@@ -54,27 +52,23 @@ nav ul li:hover { color:#fff200; transform:scale(1.1); }
   transition: transform 0.3s, box-shadow 0.3s;
 }
 .product-card:hover { transform:translateY(-5px); box-shadow:0 10px 25px rgba(0,0,0,0.25); }
-.product-card img { width:100%; height:180px; object-fit:cover; border-radius:10px; margin-bottom:10px; transition:0.3s; }
-.product-card img:hover { transform:scale(1.05); }
-.product-card h3, .product-card p {
-  font-family: 'Poppins', sans-serif;
-  color:#333;
-}
+.product-card img { width:100%; height:180px; object-fit:cover; border-radius:10px; margin-bottom:10px; }
+.product-card h3, .product-card p { color:#333; }
 
 /* Buttons */
 button {
   margin-top:10px;
   padding:8px 12px;
-  background:#ff6f61;
+  background:#007BFF;
   color:white;
   border:none;
   border-radius:6px;
   cursor:pointer;
   transition:0.3s;
 }
-button:hover { background:#e55b4f; transform:scale(1.05); box-shadow:0 5px 15px rgba(0,0,0,0.2); }
+button:hover { background:#0056b3; transform:scale(1.05); }
 
-/* Modal common */
+/* Modal */
 .modal {
   display:none;
   position:fixed;
@@ -84,7 +78,6 @@ button:hover { background:#e55b4f; transform:scale(1.05); box-shadow:0 5px 15px 
   background: rgba(0,0,0,0.5);
   justify-content:center;
   align-items:center;
-  animation: fadeIn 0.5s ease forwards;
 }
 .modal-content {
   background:white;
@@ -92,21 +85,16 @@ button:hover { background:#e55b4f; transform:scale(1.05); box-shadow:0 5px 15px 
   border-radius:15px;
   width:400px;
   text-align:center;
-  position:relative;
   max-height:90vh;
   overflow-y:auto;
-  transform:scale(0.7);
-  animation: zoomIn 0.5s forwards;
 }
 .modal-content img { width:100%; height:250px; object-fit:cover; border-radius:10px; }
-.close { position:absolute; top:10px; right:15px; font-size:26px; cursor:pointer; color:red; transition:0.3s; }
-.close:hover { transform:scale(1.2); }
+.close { position:absolute; top:10px; right:15px; font-size:26px; cursor:pointer; color:red; }
 
-/* Cart Modal slide from right */
-#cart-modal .modal-content { width:350px; right:0; left:auto; animation: slideIn 0.5s forwards; }
+/* Cart items */
 .cart-item { display:flex; justify-content:space-between; margin:10px 0; }
 .cart-item button { background:red; }
-.cart-item button:hover { background:#cc0000; transform:scale(1.05); }
+.cart-item button:hover { background:#cc0000; }
 
 /* Reviews Section */
 #reviews-section {
@@ -117,31 +105,16 @@ button:hover { background:#e55b4f; transform:scale(1.05); box-shadow:0 5px 15px 
   box-shadow:0 4px 10px rgba(0,0,0,0.1);
   max-width:400px;
 }
-#reviews-section h2 {
-  margin-bottom:10px;
-  color:#ff6f61;
-  font-size:20px;
-  text-align:left;
-}
-.review-card {
-  border-bottom:1px solid #ddd;
-  padding:8px;
-  font-size:14px;
-}
+#reviews-section h2 { color:#007BFF; margin-bottom:10px; }
+.review-card { border-bottom:1px solid #ddd; padding:8px; font-size:14px; }
 .review-card:last-child { border-bottom:none; }
 .review-card p { margin:4px 0; }
 
-/* Headings for Featured and All Products same as Reviews */
+/* Headings */
 #featured-section h2,
 #all-products-section h2 {
-  font-family: 'Poppins', sans-serif;
-  color:#ff6f61;
+  color:#007BFF;
   font-size:20px;
   margin-bottom:10px;
   text-align:left;
 }
-
-/* Animations */
-@keyframes fadeIn { from{opacity:0;} to{opacity:1;} }
-@keyframes zoomIn { from{transform:scale(0.7);} to{transform:scale(1);} }
-@keyframes slideIn { from{transform:translateX(100%);} to{transform:translateX(0);}
