@@ -16,6 +16,7 @@
         <li>
           <i class="fa fa-list"></i> Categories
           <select id="category-select" onchange="filterCategory()">
+            <option value="">Select</option>
             <option value="All">All</option>
             <option value="Fashion">Fashion</option>
             <option value="Electronics">Electronics</option>
@@ -28,19 +29,36 @@
   </header>
 
   <main>
+    <!-- Featured Products -->
     <section id="featured-section">
       <h2>Featured Products</h2>
       <div class="product-list" id="featured-list"></div>
     </section>
 
+    <!-- All Products -->
     <section id="all-products-section">
       <h2>All Products</h2>
       <div class="product-list" id="product-list"></div>
     </section>
 
+    <!-- Review Section -->
     <section id="reviews-section">
       <h2>User Reviews</h2>
       <div id="reviews-list"></div>
+
+      <h3>Write a Review</h3>
+      <select id="review-product">
+        <option value="">Select Product</option>
+      </select>
+      <select id="review-rating">
+        <option value="5">★★★★★</option>
+        <option value="4">★★★★☆</option>
+        <option value="3">★★★☆☆</option>
+        <option value="2">★★☆☆☆</option>
+        <option value="1">★☆☆☆☆</option>
+      </select>
+      <textarea id="review-text" rows="3" placeholder="Write your review here..."></textarea>
+      <button onclick="submitReview()">Submit Review</button>
     </section>
   </main>
 
