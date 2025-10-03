@@ -1,14 +1,14 @@
 const products = [
-  { name: "Wrist Watch", price: 1999, category:"Fashion", image:"https://source.unsplash.com/300x200/?watch", reviews:[] },
-  { name: "Sports Shoes", price: 2499, category:"Fashion", image:"https://source.unsplash.com/300x200/?shoes", reviews:[] },
-  { name: "Bluetooth Speaker", price: 1299, category:"Electronics", image:"https://source.unsplash.com/300x200/?speaker", reviews:[] },
-  { name: "Backpack", price: 899, category:"Accessories", image:"https://source.unsplash.com/300x200/?backpack", reviews:[] },
-  { name: "Headphones", price: 1599, category:"Electronics", image:"https://source.unsplash.com/300x200/?headphones", reviews:[] },
-  { name: "Sunglasses", price: 749, category:"Accessories", image:"https://source.unsplash.com/300x200/?sunglasses", reviews:[] },
-  { name: "Perfume", price: 1099, category:"Fashion", image:"https://source.unsplash.com/300x200/?perfume", reviews:[] },
-  { name: "Keyboard", price: 1299, category:"Electronics", image:"https://source.unsplash.com/300x200/?keyboard", reviews:[] },
-  { name: "Table Lamp", price: 699, category:"Accessories", image:"https://source.unsplash.com/300x200/?lamp", reviews:[] },
-  { name: "Jacket", price: 2199, category:"Fashion", image:"https://source.unsplash.com/300x200/?jacket", reviews:[] }
+  { name: "Wrist Watch", price: 1999, category:"Fashion", image:"https://images.unsplash.com/photo-1518546311437-9d0a2d7b23b4?auto=format&fit=crop&w=300&q=80", reviews:[] },
+  { name: "Sports Shoes", price: 2499, category:"Fashion", image:"https://images.unsplash.com/photo-1600185363637-cd186b0d4a2f?auto=format&fit=crop&w=300&q=80", reviews:[] },
+  { name: "Bluetooth Speaker", price: 1299, category:"Electronics", image:"https://images.unsplash.com/photo-1585386959984-a415522d70a6?auto=format&fit=crop&w=300&q=80", reviews:[] },
+  { name: "Backpack", price: 899, category:"Accessories", image:"https://images.unsplash.com/photo-1596464716121-79c90fc29c42?auto=format&fit=crop&w=300&q=80", reviews:[] },
+  { name: "Headphones", price: 1599, category:"Electronics", image:"https://images.unsplash.com/photo-1598300054993-2c91c8b9e5bc?auto=format&fit=crop&w=300&q=80", reviews:[] },
+  { name: "Sunglasses", price: 749, category:"Accessories", image:"https://images.unsplash.com/photo-1585155779798-5b1324b2b2f3?auto=format&fit=crop&w=300&q=80", reviews:[] },
+  { name: "Perfume", price: 1099, category:"Fashion", image:"https://images.unsplash.com/photo-1570714963686-88c2e6d8fc0e?auto=format&fit=crop&w=300&q=80", reviews:[] },
+  { name: "Keyboard", price: 1299, category:"Electronics", image:"https://images.unsplash.com/photo-1593642532400-2682810df593?auto=format&fit=crop&w=300&q=80", reviews:[] },
+  { name: "Table Lamp", price: 699, category:"Accessories", image:"https://images.unsplash.com/photo-1586075453567-0ff8893a21ec?auto=format&fit=crop&w=300&q=80", reviews:[] },
+  { name: "Jacket", price: 2199, category:"Fashion", image:"https://images.unsplash.com/photo-1598970434795-0c54fe7c0642?auto=format&fit=crop&w=300&q=80", reviews:[] }
 ];
 
 let cart = [];
@@ -64,13 +64,13 @@ function displayProducts(list) {
 function createProductCard(product,index) {
   const card = document.createElement("div");
   card.classList.add("product-card");
-  card.innerHTML=`
-    <img src="${product.image}" alt="${product.name}">
-    <h3>${product.name}</h3>
-    <p>₹${product.price}</p>
-    <button onclick="openModal(${index})">View Details</button>
-    <button onclick="addToCart(${index})">Add to Cart</button>
-  `;
+ card.innerHTML=`
+  <img src="${product.image}" alt="${product.name}" onerror="this.src='https://via.placeholder.com/300x200?text=Image+Not+Found'">
+  <h3>${product.name}</h3>
+  <p>₹${product.price}</p>
+  <button onclick="openModal(${index})">View Details</button>
+  <button onclick="addToCart(${index})">Add to Cart</button>
+`;
   return card;
 }
 
@@ -145,4 +145,5 @@ initReviewDropdown();
 displayFeatured();
 displayProducts(products);
 displayReviews();
+
 
