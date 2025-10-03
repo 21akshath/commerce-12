@@ -12,13 +12,22 @@ const products = [
 ];
 
 let cart = [];
+let currentModalIndex = null;
 
 const productList = document.getElementById("product-list");
 const cartCounter = document.getElementById("cart");
 const cartModal = document.getElementById("cart-modal");
 const cartItemsDiv = document.getElementById("cart-items");
 const cartTotal = document.getElementById("cart-total");
+const modal = document.getElementById("modal");
+const modalImg = document.getElementById("modal-img");
+const modalName = document.getElementById("modal-name");
+const modalPrice = document.getElementById("modal-price");
+const modalDesc = document.getElementById("modal-desc");
+const modalAddBtn = document.getElementById("modal-add-btn");
+const reviewsList = document.getElementById("reviews-list");
 
+// Display products
 function displayProducts(list) {
   productList.innerHTML = "";
   list.forEach((product, index) => {
@@ -28,50 +37,56 @@ function displayProducts(list) {
       <img src="${product.image}" alt="${product.name}">
       <h3>${product.name}</h3>
       <p>₹${product.price}</p>
-      <div>
-        <label>Rating:</label>
-        <select id="rating-${index}">
-          <option value="5">★★★★★</option>
-          <option value="4">★★★★☆</option>
-          <option value="3">★★★☆☆</option>
-          <option value="2">★★☆☆☆</option>
-          <option value="1">★☆☆☆☆</option>
-        </select>
-      </div>
-      <div>
-        <textarea id="review-${index}" rows="2" placeholder="Write a review..."></textarea>
-      </div>
+      <button onclick="openModal(${index})">View Details</button>
       <button onclick="addToCart(${index})">Add to Cart</button>
     `;
     productList.appendChild(card);
   });
 }
-
 displayProducts(products);
 
-// Add to cart with review
+// Modal functions
+function openModal(index) {
+  currentModalIndex = index;
+  const product = products[index];
+  modalImg.src = product.image;
+  modalName.textContent = product.name;
+  modalPrice.textContent = `₹${product.price}`;
+  modalDesc.textContent = `Category: ${product.category}`;
+  modal.style.display = "flex";
+}
+function closeModal() { modal.style.display = "none"; }
+
+// Add to cart
 function addToCart(index) {
-  const rating = document.getElementById(`rating-${index}`).value;
-  const reviewText = document.getElementById(`review-${index}`).value;
-  products[index].reviews.push({rating, text: reviewText});
   cart.push(products[index]);
   cartCounter.textContent = `Cart (${cart.length})`;
+  displayReviews();
+}
+
+// Display reviews at bottom
+function displayReviews() {
+  reviewsList.innerHTML = "";
+  products.forEach(product => {
+    product.reviews.forEach(r => {
+      const div = document.createElement("div");
+      div.classList.add("review-card");
+      div.innerHTML = `<strong>${product.name}</strong> - Rating: ${r.rating}/5<p>${r.text}</p>`;
+      reviewsList.appendChild(div);
+    });
+  });
 }
 
 // Category filter
 function filterCategory() {
   const selected = document.getElementById("category-select").value;
-  if(selected === "All") {
-    displayProducts(products);
-  } else {
-    displayProducts(products.filter(p => p.category === selected));
-  }
+  if(selected === "All") displayProducts(products);
+  else displayProducts(products.filter(p => p.category === selected));
 }
 
-// Cart modal functions
+// Cart modal
 function openCart() { cartModal.style.display = "flex"; renderCart(); }
 function closeCart() { cartModal.style.display = "none"; }
-
 function renderCart() {
   cartItemsDiv.innerHTML = "";
   let total = 0;
@@ -85,9 +100,17 @@ function renderCart() {
   });
   cartTotal.textContent = `Total: ₹${total}`;
 }
-
 function removeFromCart(index) {
   cart.splice(index,1);
   cartCounter.textContent = `Cart (${cart.length})`;
   renderCart();
+}
+
+// Checkout
+function checkout() {
+  if(cart.length===0) alert("Your cart is empty!");
+  else {
+    alert(`Order submitted successfully!\nTotal: ₹${cart.reduce((a,b)=>a+b.price,0)}`);
+    cart=[]; cartCounter.textContent=`Cart (0)`; renderCart(); displayReviews();
+  }
 }
