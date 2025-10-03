@@ -104,14 +104,35 @@ button:hover { background:#e55b4f; transform:scale(1.05); box-shadow:0 5px 15px 
 .cart-item button { background:red; }
 .cart-item button:hover { background:#cc0000; transform:scale(1.05); }
 
-/* Reviews section */
-#reviews-section { background:#fff; padding:20px; margin:20px; border-radius:15px; box-shadow:0 5px 15px rgba(0,0,0,0.1); }
-#reviews-section h2 { margin-bottom:15px; text-align:center; color:#ff6f61; }
-.review-card { border-bottom:1px solid #ddd; padding:10px; }
+/* Reviews Section on left */
+#reviews-section {
+  background:#fff;
+  padding:15px;
+  margin:20px;
+  border-radius:12px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.1);
+  max-width:400px; /* smaller width */
+}
+
+#reviews-section h2 {
+  margin-bottom:10px;
+  color:#ff6f61;
+  font-size:20px;
+  text-align:left;
+}
+
+.review-card {
+  border-bottom:1px solid #ddd;
+  padding:8px;
+  font-size:14px;
+}
 .review-card:last-child { border-bottom:none; }
-.review-card p { margin:5px 0; }
+
+.review-card p { margin:4px 0; }
+
 
 /* Animations */
 @keyframes fadeIn { from{opacity:0;} to{opacity:1;} }
 @keyframes zoomIn { from{transform:scale(0.7);} to{transform:scale(1);} }
 @keyframes slideIn { from{transform:translateX(100%);} to{transform:translateX(0);} }
+
