@@ -1,91 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ShopEase - Modern Store</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-</head>
-<body>
-  <header>
-    <div class="logo">ShopEase</div>
-    <nav>
-      <ul>
-        <li><i class="fa fa-home"></i> Home</li>
-        <li>
-          <i class="fa fa-list"></i> Categories
-          <select id="category-select" onchange="filterCategory()">
-            <option value="">Select</option>
-            <option value="All">All</option>
-            <option value="Fashion">Fashion</option>
-            <option value="Electronics">Electronics</option>
-            <option value="Accessories">Accessories</option>
-          </select>
-        </li>
-        <li id="cart" onclick="openCart()"><i class="fa fa-shopping-cart"></i> Cart (0)</li>
-      </ul>
-    </nav>
-  </header>
+<header>
+  <div class="logo">ShopEase</div>
+  <nav>
+    <ul>
+      <li onclick="displayAllProducts()"><i class="fa fa-home"></i> Home</li>
+      <li>
+        <i class="fa fa-list"></i> Categories
+        <span class="category-list">
+          <button onclick="filterCategory('All')">All</button>
+          <button onclick="filterCategory('Fashion')">Fashion</button>
+          <button onclick="filterCategory('Electronics')">Electronics</button>
+          <button onclick="filterCategory('Accessories')">Accessories</button>
+        </span>
+      </li>
+      <li id="cart" onclick="openCart()"><i class="fa fa-shopping-cart"></i> Cart (0)</li>
+    </ul>
+  </nav>
+</header>
 
-  <main>
-    <!-- Featured Products -->
-    <section id="featured-section">
-      <h2>Featured Products</h2>
-      <div class="product-list" id="featured-list"></div>
-    </section>
+<main>
+  <!-- Featured Products -->
+  <section id="featured-section">
+    <h2>Featured Products</h2>
+    <div class="product-list" id="featured-list"></div>
+  </section>
 
-    <!-- All Products -->
-    <section id="all-products-section">
-      <h2>All Products</h2>
-      <div class="product-list" id="product-list"></div>
-    </section>
+  <!-- All Products -->
+  <section id="all-products-section">
+    <h2>All Products</h2>
+    <div class="product-list" id="product-list"></div>
+  </section>
 
-    <!-- Review Section -->
-    <section id="reviews-section">
-  <h2>User Reviews</h2>
-  <div id="reviews-list" class="reviews-left"></div>
-</section>
-      <h3>Write a Review</h3>
-      <select id="review-product">
-        <option value="">Select Product</option>
-      </select>
-      <select id="review-rating">
-        <option value="5">★★★★★</option>
-        <option value="4">★★★★☆</option>
-        <option value="3">★★★☆☆</option>
-        <option value="2">★★☆☆☆</option>
-        <option value="1">★☆☆☆☆</option>
-      </select>
-      <textarea id="review-text" rows="3" placeholder="Write your review here..."></textarea>
-      <button onclick="submitReview()">Submit Review</button>
-    </section>
-  </main>
-
-  <!-- Product Details Modal -->
-  <div id="modal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal()">&times;</span>
-      <img id="modal-img" src="" alt="Product Image">
-      <h2 id="modal-name"></h2>
-      <p id="modal-price"></p>
-      <p id="modal-desc"></p>
-      <button id="modal-add-btn" onclick="addToCart(currentModalIndex)">Add to Cart</button>
-    </div>
-  </div>
-
-  <!-- Cart Modal -->
-  <div id="cart-modal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeCart()">&times;</span>
-      <h2>Your Cart</h2>
-      <div id="cart-items"></div>
-      <p id="cart-total"></p>
-      <button onclick="checkout()">Checkout</button>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
-</body>
-</html>
-
+  <!-- User Reviews -->
+  <section id="reviews-section">
+    <h2>User Reviews</h2>
+    <div id="reviews-list" class="reviews-left"></div>
+  </section>
+</main>
