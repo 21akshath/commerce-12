@@ -27,7 +27,7 @@ const modalName = document.getElementById("modal-name");
 const modalPrice = document.getElementById("modal-price");
 const modalDesc = document.getElementById("modal-desc");
 
-// Display Featured Products (top 5)
+// Display Featured Products
 function displayFeatured() {
   featuredList.innerHTML = "";
   const topProducts = products.slice(0,5);
@@ -60,7 +60,7 @@ function createProductCard(product,index){
   return card;
 }
 
-// Modal functions
+// Modal
 function openModal(index){
   currentModalIndex=index;
   const product = products[index];
@@ -72,7 +72,7 @@ function openModal(index){
 }
 function closeModal(){ modal.style.display="none"; }
 
-// Cart functions
+// Cart
 function addToCart(index){
   cart.push(products[index]);
   cartCounter.textContent=`Cart (${cart.length})`;
@@ -104,13 +104,13 @@ function checkout(){
   }
 }
 
-// Category filter using buttons
+// Category filter
 function filterCategory(category){
   if(category==="All") displayProducts(products);
   else displayProducts(products.filter(p=>p.category===category));
 }
 
-// Display user reviews on the left
+// Display user reviews
 function displayReviews(){
   reviewsList.innerHTML="";
   products.forEach(product=>{
@@ -123,10 +123,7 @@ function displayReviews(){
   });
 }
 
-// Display all products section
-function displayAllProducts(){
-  displayProducts(products);
-}
+function displayAllProducts(){ displayProducts(products); }
 
 // Initialize
 displayFeatured();
