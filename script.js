@@ -17,6 +17,9 @@ let currentModalIndex = null;
 const featuredList = document.getElementById("featured-list");
 const productList = document.getElementById("product-list");
 const reviewsList = document.getElementById("reviews-list");
+const reviewProductSelect = document.getElementById("review-product");
+const reviewRating = document.getElementById("review-rating");
+const reviewText = document.getElementById("review-text");
 const cartCounter = document.getElementById("cart");
 const cartModal = document.getElementById("cart-modal");
 const cartItemsDiv = document.getElementById("cart-items");
@@ -26,6 +29,17 @@ const modalImg = document.getElementById("modal-img");
 const modalName = document.getElementById("modal-name");
 const modalPrice = document.getElementById("modal-price");
 const modalDesc = document.getElementById("modal-desc");
+
+// Initialize Product Dropdown for Review
+function initReviewDropdown() {
+  reviewProductSelect.innerHTML = '<option value="">Select Product</option>';
+  products.forEach((p, idx)=>{
+    const option = document.createElement("option");
+    option.value = idx;
+    option.textContent = p.name;
+    reviewProductSelect.appendChild(option);
+  });
+}
 
 // Featured Products (top 3)
 function displayFeatured() {
@@ -40,13 +54,13 @@ function displayFeatured() {
 // All Products
 function displayProducts(list) {
   productList.innerHTML="";
-  list.forEach((product,index)=> {
+  list.forEach((product,index)=>{
     const card = createProductCard(product,index);
     productList.appendChild(card);
   });
 }
 
-// Create Product Card with review
+// Create Product Card
 function createProductCard(product,index) {
   const card = document.createElement("div");
   card.classList.add("product-card");
@@ -54,35 +68,25 @@ function createProductCard(product,index) {
     <img src="${product.image}" alt="${product.name}">
     <h3>${product.name}</h3>
     <p>₹${product.price}</p>
-    <div class="review-section">
-      <label>Rating:</label>
-      <select id="rating-${index}">
-        <option value="5">★★★★★</option>
-        <option value="4">★★★★☆</option>
-        <option value="3">★★★☆☆</option>
-        <option value="2">★★☆☆☆</option>
-        <option value="1">★☆☆☆☆</option>
-      </select>
-      <textarea id="review-${index}" rows="2" placeholder="Write a review..."></textarea>
-      <button onclick="submitReview(${index})">Submit Review</button>
-    </div>
     <button onclick="openModal(${index})">View Details</button>
+    <button onclick="addToCart(${index})">Add to Cart</button>
   `;
   return card;
 }
 
-// Submit review
-function submitReview(index) {
-  const rating = document.getElementById(`rating-${index}`).value;
-  const text = document.getElementById(`review-${index}`).value;
-  if(text.trim()==="") { alert("Write something!"); return; }
-  products[index].reviews.push({rating,text});
-  document.getElementById(`review-${index}`).value="";
+// Submit Review (from bottom)
+function submitReview(){
+  const idx = reviewProductSelect.value;
+  const rating = reviewRating.value;
+  const text = reviewText.value.trim();
+  if(idx === "" || text === "") { alert("Select product and write review!"); return; }
+  products[idx].reviews.push({rating,text});
+  reviewText.value = "";
   displayReviews();
 }
 
 // Display reviews at bottom
-function displayReviews() {
+function displayReviews(){
   reviewsList.innerHTML="";
   products.forEach(product=>{
     product.reviews.forEach(r=>{
@@ -128,19 +132,17 @@ function renderCart(){
   cartTotal.textContent=`Total: ₹${total}`;
 }
 function removeFromCart(index){ cart.splice(index,1); cartCounter.textContent=`Cart (${cart.length})`; renderCart(); }
-function checkout(){
-  if(cart.length===0) alert("Cart is empty!");
-  else{ alert(`Order submitted!\nTotal: ₹${cart.reduce((a,b)=>a+b.price,0)}`); cart=[]; cartCounter.textContent=`Cart (0)`; renderCart(); }
-}
+function checkout(){ if(cart.length===0) alert("Cart is empty!"); else{ alert(`Order submitted!\nTotal: ₹${cart.reduce((a,b)=>a+b.price,0)}`); cart=[]; cartCounter.textContent=`Cart (0)`; renderCart(); } }
 
 // Category filter
 function filterCategory(){
   const selected=document.getElementById("category-select").value;
   if(selected==="All") displayProducts(products);
-  else displayProducts(products.filter(p=>p.category===selected));
+  else if(selected!=="") displayProducts(products.filter(p=>p.category===selected));
 }
 
 // Initialize
+initReviewDropdown();
 displayFeatured();
 displayProducts(products);
 displayReviews();
